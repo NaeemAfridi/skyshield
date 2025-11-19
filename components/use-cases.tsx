@@ -61,7 +61,7 @@ export default function UseCases() {
         </div>
 
         {/* Use Cases Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid md:grid-cols-3 grid-cols-2 gap-6">
           {useCases.map((useCase, index) => {
             const Icon = useCase.icon;
             return (

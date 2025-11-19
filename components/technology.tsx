@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Brain, Monitor, Radio, Zap } from "lucide-react";
 import { FaBrain } from "react-icons/fa";
@@ -73,19 +72,17 @@ const techCategories = [
 ];
 
 export default function Technology() {
-  const [activeTab, setActiveTab] = useState("platform");
-
   return (
     <section
       className="section-padding relative bg-[#111] overflow-hidden"
       id="technology"
     >
-      {/* Static gradient glow backgrounds */}
+      {/* Background glow */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-amber-400/10 blur-3xl rounded-full pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-orange-500/10 blur-3xl rounded-full pointer-events-none" />
 
       <div className="max-w-6xl mx-auto flex flex-col items-center relative z-10">
-        {/* Section heading */}
+        {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
             Technology &{" "}
@@ -99,62 +96,36 @@ export default function Technology() {
           </p>
         </div>
 
-        {/* Tabs */}
-        <div className="w-full">
-          <div className="grid w-full grid-cols-2 md:grid-cols-5 backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl shadow-xl h-14">
-            {techCategories.map((category) => {
-              const Icon = category.icon;
-              const isActive = activeTab === category.id;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveTab(category.id)}
-                  className={`flex items-center gap-2 justify-center py-3 px-4 rounded-xl transition-all duration-300
-                    ${
-                      isActive
-                        ? "bg-yellow-600/80 text-black shadow-lg backdrop-blur-xl"
-                        : "text-slate-300 hover:bg-white/10"
-                    }`}
-                >
-                  <Icon className="w-4 h-4 hidden sm:inline" />
-                  <span className="hidden sm:inline text-xs sm:text-sm">
+        {/* Cards Grid */}
+        <div className="grid sm:grid-cols-2 md:grid-cols-3  gap-6 w-full">
+          {techCategories.map((category) => {
+            const Icon = category.icon;
+            return (
+              <Card
+                key={category.id}
+                className="bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl p-6 rounded-2xl transition-transform duration-300 hover:scale-105 hover:border-orange-500/40 hover:bg-white/10 cursor-pointer"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <Icon className="w-6 h-6 text-amber-400" />
+                  <h3 className="text-lg font-bold text-white">
                     {category.label}
-                  </span>
-                  <span className="sm:hidden text-xs">
-                    {category.label.split(" ")[0]}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Tab content */}
-          <div className="mt-8 w-full">
-            {techCategories.map(
-              (category) =>
-                activeTab === category.id && (
-                  <Card
-                    key={category.id}
-                    className="bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl p-8 rounded-2xl transition-all duration-300 hover:border-orange-500/30 hover:bg-white/10"
-                  >
-                    <h3 className="text-2xl font-bold text-white mb-3">
-                      {category.label}
-                    </h3>
-                    <p className="text-slate-300 mb-6">
-                      {category.description}
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {category.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2" />
-                          <span className="text-slate-200">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </Card>
-                )
-            )}
-          </div>
+                  </h3>
+                </div>
+                <p className="text-slate-300 mb-4">{category.description}</p>
+                <ul className="space-y-2">
+                  {category.features.map((feature, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-2 text-slate-200"
+                    >
+                      <span className="w-2 h-2 bg-yellow-600 rounded-full mt-2 shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
