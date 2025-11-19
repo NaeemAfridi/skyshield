@@ -44,7 +44,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-xl font-semibold text-white">WhatsApp</h4>
-                <p className="text-slate-400 mt-1">+92 300 1234567</p>
+                <p className="text-slate-400 mt-1">+92 3169828410</p>
               </div>
             </div>
 
